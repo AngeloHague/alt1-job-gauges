@@ -1,5 +1,5 @@
 import * as a1lib from 'alt1';
-import BuffReader from 'alt1/buffs';
+import BuffReader from './compat/modern-buffs';
 import { CombatStyle } from '../types';
 import { findAmmo } from './ranged/activeAmmo';
 import { A1Sauce } from '../a1sauce';
@@ -80,13 +80,7 @@ async function retryOperation(
 export function findBuffsBar() {
     console.info('Attempting to find buffs bar...');
 
-    if (
-        getSetting('rememberUiPosition') &&
-        getSetting('buffsPosition')
-    ) {
-        buffReader.pos = JSON.parse(getSetting('buffsPosition'));
-        return;
-    }
+    // Re-find instead of trusting coordinates saved before the UI update.
 
     if (!buffReader.find()) {
         errorLogger.showError({
@@ -101,12 +95,9 @@ export function findBuffsBar() {
 export function findDebuffsBar() {
     console.info('Attempting to find debuffs bar...');
 
-    if (getSetting('rememberUiPosition') && getSetting('debuffsPosition')) {
-        debuffReader.pos = JSON.parse(getSetting('debuffsPosition'));
-        return;
-    }
+    // Re-find debuffs independently; either bar can move.
 
-    if (!debuffReader.pos && !debuffReader.find()) {
+    if (!debuffReader.find()) {
         errorLogger.showError({
             title: 'No Debuffs Found',
             message: `<p>Job Gauges could not locate your debuffs bar. Please toggle on your Prayer or some other way of obtaining a debuff and Job Gauges will attempt to search again shortly or click the button below.</p>`,
@@ -148,9 +139,15 @@ export function testBuffSizes(): boolean {
     return false;
 }
 
+let readingStarted = false;
+function startReadingOnce() {
+    if (!readingStarted) { readingStarted = true; beginRendering(); }
+}
+
 retryOperation(findBuffsBar, 3, 10000)
     .then(() => {
         console.info('Success! Found Buffs.');
+        startReadingOnce();
         if (document.getElementById('#Error') !== undefined) {
             const err = document.querySelectorAll('#Error');
             for (let i = 0; i < err.length; i++) {
@@ -190,7 +187,7 @@ retryOperation(findDebuffsBar, 3, 10000)
         if (buffReader.pos && debuffReader.pos) {
             updateSetting('buffsPosition', JSON.stringify(buffReader.pos));
             updateSetting('debuffsPosition', JSON.stringify(debuffReader.pos));
-            beginRendering();
+            startReadingOnce();
         }
     })
     .catch(() => {
@@ -420,7 +417,7 @@ function updateBuffData(
 
         if (match.passed > threshold) {
             foundBuff = true;
-            updateCallbackFn(time, greater);
+            if (Number.isFinite(time)) updateCallbackFn(time, greater);
         }
     }
 
@@ -450,9 +447,8 @@ function updateStackData(
         if (match.passed > threshold) {
             foundBuff = true;
             const timearg = buff.readArg('timearg').arg;
-            updateCallbackFn(
-                parseInt(timearg.substring(1, timearg.length - 1), 10),
-            );
+            const stacks = parseInt(timearg.replace(/[()]/g, ''), 10);
+            if (Number.isFinite(stacks)) updateCallbackFn(stacks);
         }
     }
 
@@ -480,7 +476,8 @@ function updateSimpleStackData(
 
         if (match.passed > threshold) {
             foundBuff = true;
-            updateCallbackFn(buff.readTime());
+            const value = buff.readTime();
+            if (Number.isFinite(value)) updateCallbackFn(value);
         }
     }
 

@@ -1,5 +1,5 @@
 import * as a1lib from 'alt1';
-import * as BuffReader from 'alt1/buffs';
+import type BuffReader from '../compat/modern-buffs';
 import { adjustPositionForScale, white } from '../utility';
 import { store } from '../../state';
 import { RangedGaugeSlice } from '../../state/gauge-data/ranged-gauge.state';
@@ -19,7 +19,7 @@ const quiverImages = a1lib.webpackImages({
 
 let lastAmmo: string;
 
-export async function findAmmo(buffs: BuffReader.Buff[] | null) {
+export async function findAmmo(buffs: ReturnType<BuffReader['read']> | null) {
     if (!buffs) {
         return;
     }

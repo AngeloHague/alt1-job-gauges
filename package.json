@@ -3,6 +3,7 @@
 		"build": "webpack",
 		"watch": "webpack --watch",
 		"test": "vitest",
+        "test:buff-compat": "node scripts/test-buff-compat.cjs",
 		"coverage": "vitest run --coverage",
 		"start": "http-server"
 	},

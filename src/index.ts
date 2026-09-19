@@ -212,8 +212,9 @@ export function resetPositionsAndFindBuffAndDebuffBars() {
     findBuffAndDebuffBars();
 }
 
+let renderTimer: ReturnType<typeof setInterval> | undefined;
 export function beginRendering() {
-    setInterval(() => renderOverlays(), 80);
+    if (!renderTimer) renderTimer = setInterval(() => renderOverlays(), 80);
 }
 
 function calibrationWarning(): void {
