@@ -1,0 +1,32 @@
+# Dependencies and generated build output
+node_modules/
+dist/
+dist-test/
+coverage/
+.npm/
+*.tsbuildinfo
+
+# Local PouchDB/LevelDB data (LOG, LOCK, CURRENT, etc.)
+job-gauges/
+
+# Development fixtures, tests and tooling not used by webpack
+/dev-assets/
+/scripts/
+**/*.test.ts
+**/*.spec.ts
+src/vitest.config.ts
+.github/
+.git/
+.agents/
+.codex/
+.vscode/
+.idea/
+*.code-workspace
+
+# Local credentials, caches and logs
+.env
+.env.*
+.npmrc
+.eslintcache
+.stylelintcache
+*.log
