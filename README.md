@@ -1,4 +1,8 @@
-# Job Gauges
+# Job Gauges - AI-maintained fork
+
+> **Independent fork:** This is a separate, AI-maintained fork of [NadyaNayme's Job Gauges](https://github.com/NadyaNayme/job-gauges). It is not an official release of the original project. Changes in this fork will not be merged into the main/upstream repository. The original maintainers are not responsible for this fork's changes or support. See [DISCLAIMER.md](DISCLAIMER.md).
+
+**Hosted app:** [alt1-job-gauges-fork.egglo.dev](https://alt1-job-gauges-fork.egglo.dev/)
  FFXIV-inspired job gauges for Runescape combat styles. Necromancy, Magic, and Ranged (WIP) are supported.
 
  ![image](https://github.com/user-attachments/assets/8d71b449-ea19-46fd-9818-ab5b49f851c8)
@@ -8,8 +12,8 @@
 
  ## How to Install & Required Settings
 
-To install Job Gauges copy & paste this link into Alt1's browser app:
-`alt1://addapp/https://nadyanayme.github.io/job-gauges/dist/appconfig.json`
+To install this fork, open the [hosted app](https://alt1-job-gauges-fork.egglo.dev/) and add it to ALT1, or use this installation link:
+`alt1://addapp/https://alt1-job-gauges-fork.egglo.dev/appconfig.json`
 
 If you do not have Alt1 Toolkit installed already you can [download it from runeapps.org](https://runeapps.org/alt1). In order for Job Gauges to work make sure your Runescape settings for buff bar size is set to `small` and that your Game and UI Scale settings are set to `100%` as these settings are required for Alt1 to be able to read your game screen.
 
@@ -46,10 +50,12 @@ If you do not have Alt1 Toolkit installed already you can [download it from rune
 
 - I've had reports of the overlay sometimes flickering for 20-50ms when exiting combat. I believe this is a bug with Alt1 v1.5.6. If anyone is willing to manually update to Alt1 v.1.6.0 and lose all their apps/settings to test this I'd appreciate it.
 
-## My Other Plugins
+## Original Author's Other Plugins
 
-To see my other Alt1 plugins [click here](https://github.com/NadyaNayme/NyusPluginDirectory)
+To see the original author's other Alt1 plugins [click here](https://github.com/NadyaNayme/NyusPluginDirectory)
 
-## Discord
+## Support
 
-For any support & suggestions please join the Discord server: [https://discord.gg/KJ2SgWyJFF](https://discord.gg/KJ2SgWyJFF) or open an issue on the relevant plugin's repository.
+For issues or suggestions about this fork, use the [fork issue tracker](https://github.com/AngeloHague/alt1-job-gauges/issues). Please do not ask the original maintainers to support fork-specific changes.
+
+The [original project Discord](https://discord.gg/KJ2SgWyJFF) is an upstream community resource, not the support channel for this fork.
