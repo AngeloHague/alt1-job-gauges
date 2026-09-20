@@ -3,7 +3,7 @@
 		"build": "webpack",
 		"watch": "webpack --watch",
 		"test": "vitest",
-        "test:buff-compat": "node scripts/test-buff-compat.cjs",
+		"test:buff-compat": "node scripts/test-buff-compat.cjs",
 		"coverage": "vitest run --coverage",
 		"start": "http-server"
 	},
@@ -37,7 +37,7 @@
 		"stylelint-order": "^7.0.0",
 		"ts-loader": "^9.5.2",
 		"typescript": "^5.8.3",
-		"typescript-eslint": "^8.19.1",
+		"typescript-eslint": "8.30.1",
 		"vitest": "^3.0.9",
 		"webpack": "^5.99.8",
 		"webpack-cli": "^6.0.1"
